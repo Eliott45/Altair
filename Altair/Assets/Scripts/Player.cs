@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit))
         {
+            _navMeshAgent.velocity = Vector3.zero;
+            //_navMeshAgent.Stop();
             _navMeshAgent.SetDestination(hit.point);
         }
     }
