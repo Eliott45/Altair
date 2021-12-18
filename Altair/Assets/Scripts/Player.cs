@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,22 +6,19 @@ public class Player : MonoBehaviour
 {
     [Header("Header set in Inspector: ")]
     [SerializeField] private Camera _camera;
-    [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Animator _animator;
 
-    private static readonly int Move = Animator.StringToHash("Move");
-    
     private Vector2 _smoothDeltaPosition = Vector2.zero;
     private Vector2 _velocity = Vector2.zero;
+    private static readonly int Move = Animator.StringToHash("Move");
+    private static readonly int Distance = Animator.StringToHash("Distance");
 
-    private void Start()
-    {
-        _navMeshAgent.updatePosition = false;
-    }
+    private void Start() => _agent.updatePosition = false;
 
     private void Update()
     {
-        var worldDeltaPosition = _navMeshAgent.nextPosition - transform.position;
+        var worldDeltaPosition = _agent.nextPosition - transform.position;
         
         // Map 'worldDeltaPosition' to local space
         var dx = Vector3.Dot (transform.right, worldDeltaPosition);
@@ -35,18 +33,24 @@ public class Player : MonoBehaviour
         if (Time.deltaTime > 1e-5f)
             _velocity = _smoothDeltaPosition / Time.deltaTime;
 
-        var moving = _velocity.magnitude > 0f && _navMeshAgent.remainingDistance > (_navMeshAgent.radius / 3);
+        var moving = _velocity.magnitude > 0f && _agent.remainingDistance > (_agent.radius / 3);
 
         _animator.SetBool(Move, moving);
 
         if (!Input.GetMouseButtonDown(0)) return;
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
+        
         if (!Physics.Raycast(ray, out var hit)) return;
-        _navMeshAgent.velocity = Vector3.zero;
-        _navMeshAgent.SetDestination(hit.point);
+        _agent.SetDestination(hit.point);
+        
+        var position = _agent.transform.position;
+        _animator.SetFloat(Distance, Math.Abs((position - hit.point).x) > 3f || Math.Abs((position - hit.point).z) > 2.5f
+            ? 1 : 0);
     }
 
-    public void OnAnimatorMove () {
-        transform.position = _navMeshAgent.nextPosition;  // Update postion to agent position
-    }
+    /// <summary>
+    /// Update position to agent position.
+    /// </summary>
+    public void OnAnimatorMove () => transform.position = _agent.nextPosition;  
+    
 }
