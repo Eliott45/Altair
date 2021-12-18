@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 750c9b3b6d7e0a04ba7f8c375aae64a7, type: 2}
+--- !u!195 &174004762 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 1262726069774376390, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
+  m_PrefabInstance: {fileID: 1262726069678162525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &614157756
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,11 +479,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &941306028 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1212795187497827739, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-  m_PrefabInstance: {fileID: 1262726069678162525}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1116797919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,38 +1130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1212795187497827739, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1212795187497827739, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: cb39362e1b125534a9e08f1c0e0e4f88, type: 2}
-    - target: {fileID: 1212795187497827739, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: m_CullingMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1212795187497827739, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1261292288275458715, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1262726069774376390, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
+    - target: {fileID: 1262726069774376391, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
+      propertyPath: _agent
+      value: 
+      objectReference: {fileID: 174004762}
     - target: {fileID: 1262726069774376391, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1466029968}
-    - target: {fileID: 1262726069774376391, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: _animator
-      value: 
-      objectReference: {fileID: 941306028}
     - target: {fileID: 1263701747972897029, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
-  _agent: {fileID: 0}
+  _agent: {fileID: 1262726069774376390}
   _animator: {fileID: 1212795187497827739}
 --- !u!195 &1262726069774376390
 NavMeshAgent:
