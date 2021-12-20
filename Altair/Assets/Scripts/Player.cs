@@ -37,11 +37,13 @@ public class Player : MonoBehaviour
         _agent.SetDestination(hit.point);
         
         var position = _agent.transform.position;
-        var distance = Math.Abs((position - hit.point).x) > 3f || Math.Abs((position - hit.point).z) > 2.5f;
+        var longDistance = Math.Abs((position - hit.point).x) > 3f || 
+                       Math.Abs((position - hit.point).z) > 3f || 
+                       Math.Abs((position - hit.point).y) > 3f;
         
-        _animator.SetFloat(Distance, Convert.ToInt32(distance));
+        _animator.SetFloat(Distance, Convert.ToInt32(longDistance));
 
-        _agent.speed = distance ? _runSpeed : _walkSpeed;
+        _agent.speed = longDistance ? _runSpeed : _walkSpeed;
     }
 
     /// <summary>
