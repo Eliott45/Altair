@@ -2177,6 +2177,8 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _agent: {fileID: 1262726069774376390}
   _animator: {fileID: 1212795187497827739}
+  _runSpeed: 5
+  _walkSpeed: 2.5
 --- !u!195 &1262726069774376390
 NavMeshAgent:
   m_ObjectHideFlags: 0

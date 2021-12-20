@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 1561882201}
-  _smoothSpeed: 0.2
+  _smoothSpeed: 0.7
   offset: {x: 0, y: 10, z: -9}
 --- !u!4 &1561882201 stripped
 Transform:
@@ -1142,6 +1142,10 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1466029968}
+    - target: {fileID: 1262726069774376391, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
+      propertyPath: _walkSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1263701747972897029, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
       propertyPath: m_RootOrder
       value: 2
