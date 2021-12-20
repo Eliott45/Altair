@@ -9,12 +9,15 @@ public class Player : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _runSpeed = 5f; 
-    [SerializeField] private float _walkSpeed = 2.5f; 
+    [SerializeField] private float _walkSpeed = 2.5f;
 
+    [Header("Set Dynamically")] 
+    [SerializeField] private EPlayerStates _state = EPlayerStates.Idle;
+    
     private Vector2 _smoothDeltaPosition = Vector2.zero;
     private Vector2 _velocity = Vector2.zero;
-    private static readonly int Moving = Animator.StringToHash("Move");
-    private static readonly int Distance = Animator.StringToHash("Distance");
+    private static readonly int Run = Animator.StringToHash("Run");
+    private static readonly int Walk = Animator.StringToHash("Walk");
 
     private void Start() => _agent.updatePosition = false;
 
@@ -22,6 +25,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") >= 1) Move();
         if (_agent.hasPath) AnimateMove();
+        UpdateAnimatorState(_state);
     }
 
     /// <summary>
@@ -40,9 +44,7 @@ public class Player : MonoBehaviour
         var longDistance = Math.Abs((position - hit.point).x) > 3f || 
                        Math.Abs((position - hit.point).z) > 3f || 
                        Math.Abs((position - hit.point).y) > 3f;
-        
-        _animator.SetFloat(Distance, Convert.ToInt32(longDistance));
-
+        _state = longDistance ? EPlayerStates.Run : EPlayerStates.Walk;
         _agent.speed = longDistance ? _runSpeed : _walkSpeed;
     }
 
@@ -66,7 +68,27 @@ public class Player : MonoBehaviour
         if (Time.deltaTime > 1e-5f) _velocity = _smoothDeltaPosition / Time.deltaTime;
         
         var moving = _velocity.magnitude > 0f && _agent.remainingDistance > (_agent.radius / 3);
-        _animator.SetBool(Moving, moving);
+        if (!moving) _state = EPlayerStates.Idle;
     }
-    
+
+    private void UpdateAnimatorState(EPlayerStates state)
+    {
+        switch (state)
+        {
+            case EPlayerStates.Idle:
+                _animator.SetBool(Run, false);
+                _animator.SetBool(Walk, false);
+                break;
+            case EPlayerStates.Walk:
+                _animator.SetBool(Run, false);
+                _animator.SetBool(Walk, true);
+                break;
+            case EPlayerStates.Run:
+                _animator.SetBool(Run, true);
+                _animator.SetBool(Walk, false);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(state), state, null);
+        }
+    }
 }
