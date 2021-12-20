@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Player : MonoBehaviour
 {
     [Header("Header set in Inspector: ")]
@@ -25,7 +27,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") >= 1) Move();
         if (_agent.hasPath) AnimateMove();
-        UpdateAnimatorState(_state);
     }
 
     /// <summary>
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
                        Math.Abs((position - hit.point).y) > 3f;
         _state = longDistance ? EPlayerStates.Run : EPlayerStates.Walk;
         _agent.speed = longDistance ? _runSpeed : _walkSpeed;
+        UpdateAnimatorState(_state);
     }
 
     /// <summary>
@@ -68,7 +70,11 @@ public class Player : MonoBehaviour
         if (Time.deltaTime > 1e-5f) _velocity = _smoothDeltaPosition / Time.deltaTime;
         
         var moving = _velocity.magnitude > 0f && _agent.remainingDistance > (_agent.radius / 3);
-        if (!moving) _state = EPlayerStates.Idle;
+        if (!moving)
+        {
+            _state = EPlayerStates.Idle;
+            UpdateAnimatorState(_state);
+        }
     }
 
     private void UpdateAnimatorState(EPlayerStates state)
