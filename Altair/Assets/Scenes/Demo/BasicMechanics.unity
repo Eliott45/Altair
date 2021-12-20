@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 750c9b3b6d7e0a04ba7f8c375aae64a7, type: 2}
---- !u!195 &174004762 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 1262726069774376390, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-  m_PrefabInstance: {fileID: 1262726069678162525}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &614157756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,17 +1130,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1262726069774376391, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: _agent
-      value: 
-      objectReference: {fileID: 174004762}
-    - target: {fileID: 1262726069774376391, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1466029968}
-    - target: {fileID: 1262726069774376391, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
-      propertyPath: _walkSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1263701747972897029, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) Move();
+        if (Input.GetAxis("Fire1") >= 1) Move();
         if (_agent.hasPath) AnimateMove();
     }
 
