@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (Input.GetAxis("Fire1") >= 1) Move();
-        if (_agent.hasPath) AnimateMove();
+        AnimateMove();
     }
 
     /// <summary>
