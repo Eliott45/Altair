@@ -700,9 +700,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 1561882201}
   _smooth: 0.5
-  _smoothZoom: 0.9
   _rotateSpeed: 5
-  _zoomSpeed: 1
+  _zoomSpeed: 0.2
+  _maxZoomOut: 7.9
+  _maxZoomIn: 3.5
 --- !u!4 &1561882201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1263701747972897029, guid: 85148f7920bbc5c40bce91f183cd3fea, type: 3}

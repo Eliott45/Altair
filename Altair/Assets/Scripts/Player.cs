@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     /// Update position to agent position.
     /// </summary>
     public void OnAnimatorMove () => transform.position = _agent.nextPosition;
-
+    
     private void Move()
     {
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -77,6 +77,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set correct state in animator;
+    /// </summary>
+    /// <param name="state">State.</param>
     private void UpdateAnimatorState(EPlayerStates state)
     {
         switch (state)

@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
-    [Header("Set in Inspector:")]
     [Header("Main options:")]
     [SerializeField] private Transform _target;
     [Range(0.01f, 1.0f)]
@@ -19,7 +18,7 @@ public class CameraController : MonoBehaviour
     
     private void Start()
     {
-        _cameraOffset = transform.position - _target.position;
+        _cameraOffset = transform.position - _target.position; 
     }
     
     private void LateUpdate()
@@ -31,6 +30,9 @@ public class CameraController : MonoBehaviour
         Follow();
     }
 
+    /// <summary>
+    /// Pursue a target.
+    /// </summary>
     private void Follow()
     {
         var newPos = _target.position + _cameraOffset;
@@ -48,12 +50,12 @@ public class CameraController : MonoBehaviour
     {
         if(zoom == 0) return;
 
-        if (zoom > 0 && transform.position.y >= _maxZoomIn)
+        if (zoom > 0 && transform.position.y >= _maxZoomIn + _target.position.y)
         {
             _cameraOffset  = new Vector3(_cameraOffset.x, _cameraOffset.y - (zoom + _zoomSpeed), 
                 _cameraOffset.z);
         }
-        else if(zoom < 0 && transform.position.y <= _maxZoomOut)
+        else if(zoom < 0 && transform.position.y <= _maxZoomOut + _target.position.y)
         {
             _cameraOffset= new Vector3(_cameraOffset.x, _cameraOffset.y + (-zoom + _zoomSpeed), 
                 _cameraOffset.z);
