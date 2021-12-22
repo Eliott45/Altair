@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _runSpeed = 5f; 
     [SerializeField] private float _walkSpeed = 2.5f;
+    [SerializeField] private float _maxWalkDistance = 3f;
 
     [Header("Set Dynamically")] 
     [SerializeField] private EPlayerStates _state = EPlayerStates.Idle;
@@ -41,10 +42,7 @@ public class Player : MonoBehaviour
         if (!Physics.Raycast(ray, out var hit)) return;
         _agent.SetDestination(hit.point);
         
-        var position = _agent.transform.position;
-        var longDistance = Math.Abs((position - hit.point).x) > 3f || 
-                       Math.Abs((position - hit.point).z) > 3f || 
-                       Math.Abs((position - hit.point).y) > 3f;
+        var longDistance = _agent.remainingDistance > _maxWalkDistance;
         _state = longDistance ? EPlayerStates.Run : EPlayerStates.Walk;
         _agent.speed = longDistance ? _runSpeed : _walkSpeed;
         UpdateAnimatorState(_state);
