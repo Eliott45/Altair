@@ -14,9 +14,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _walkSpeed = 2.5f;
     [SerializeField] private float _maxWalkDistance = 3f;
 
-    [Header("Set Dynamically")] 
+    [Header("Set Dynamically:")] 
     [SerializeField] private EPlayerStates _state = EPlayerStates.Idle;
-    
+
     private Vector2 _smoothDeltaPosition = Vector2.zero;
     private Vector2 _velocity = Vector2.zero;
     private static readonly int Run = Animator.StringToHash("Run");

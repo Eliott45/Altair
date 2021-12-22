@@ -5,16 +5,20 @@ public class CameraController : MonoBehaviour
 {
     [Header("Main options:")]
     [SerializeField] private Transform _target;
-    [Range(0.01f, 1.0f)]
-    [SerializeField] private float _smooth = 0.5f;
+    [Range(0.01f, 1.0f)] [SerializeField] private float _smooth = 0.5f;
+    
     [Header("Rotate options:")]
     [SerializeField] private float _rotateSpeed = 5f;
+    
     [Header("Zoom options:")]
     [SerializeField] private float _zoomSpeed = 0.5f;
     [SerializeField] private float _maxZoomOut = 7.9f;
     [SerializeField] private float _maxZoomIn = 3.5f;
-
+    
+    [Header("Set Dynamically:")]
+    [SerializeField] private bool _lockCamera = true; 
     private Vector3 _cameraOffset;
+   
     
     private void Start()
     {
@@ -26,7 +30,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetAxis("Fire3") >= 1) Rotate();
 
         Zoom(Input.GetAxis("Mouse ScrollWheel"));
-        
+
         Follow();
     }
 
